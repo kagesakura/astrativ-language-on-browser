@@ -20,7 +20,7 @@
       ~async function() {
           const output = document.getElementById("output");
           const outputWrapper = document.getElementById("output-wrapper");
-          const isMobile = /(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent);
+          const isMobile = /(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent) || new URLSearchParams(location.search).has("mobile");
           const input = document.getElementById(isMobile ? "script-input-for-mobile" : "script-input");
           const inputForm = document.getElementById("script-input-form-for-mobile");
 
