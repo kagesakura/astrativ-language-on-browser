@@ -39,15 +39,13 @@
           });
           const inputHistory = [];
           let inputHistoryIndex = 0;
+          const fitTextarea = () => {
+              input.style.height = "3px";
+              input.style.height = input.scrollHeight + "px";
+          };
           if (!isMobile) {
-              input.addEventListener("input", () => {
-                  input.style.height = "3px";
-                  input.style.height = input.scrollHeight + "px";
-              });
-              window.addEventListener("resize", () => {
-                  input.style.height = "3px";
-                  input.style.height = input.scrollHeight + "px";
-              });
+              input.addEventListener("input", fitTextarea);
+              window.addEventListener("resize", fitTextarea);
           }
 
           inputForm.addEventListener("submit", e => {
@@ -66,6 +64,7 @@
               scrollToTheEnd();
 
               input.value = "";
+              fitTextarea();
 
               executeAstrativ(inputValue);
           }
@@ -90,6 +89,7 @@
                   if (inputHistoryIndex >= 1) {
                       inputHistoryIndex--;
                       input.value = inputHistory[inputHistoryIndex];
+                      fitTextarea();
                       scrollToTheEnd();
                   }
                   return;
@@ -99,6 +99,7 @@
                   if (inputHistory.length - 1 > inputHistoryIndex) {
                       inputHistoryIndex++;
                       input.value = inputHistory[inputHistoryIndex];
+                      fitTextarea();
                       scrollToTheEnd();
                   }
                   return;
@@ -122,41 +123,41 @@
                       return addHeapObject(getStringFromWasm0(arg0, arg1));
                   },
                   __wbg_error_f851667af71bcfc6(arg0, arg1) {
-                    let deferred0_0;
-                    let deferred0_1;
-                    try {
-                      deferred0_0 = arg0;
-                      deferred0_1 = arg1;
-                      console.error(getStringFromWasm0(arg0, arg1));
-                    } finally {
-                      instance.exports.__wbindgen_free(deferred0_0, deferred0_1, 1);
-                    }
+                      let deferred0_0;
+                      let deferred0_1;
+                      try {
+                        deferred0_0 = arg0;
+                        deferred0_1 = arg1;
+                        console.error(getStringFromWasm0(arg0, arg1));
+                      } finally {
+                        instance.exports.__wbindgen_free(deferred0_0, deferred0_1, 1);
+                      }
                   },
                   __wbg_new_abda76e883ba8a5f() {
-                    const ret = new Error();
-                    return addHeapObject(ret);
+                      const ret = new Error();
+                      return addHeapObject(ret);
                   },
                   __wbg_stack_658279fe44541cf6(arg0, arg1) {
-                    const ret = getObject(arg1).stack;
-                    const ptr1 = passStringToWasm0(ret, instance.exports.__wbindgen_malloc, instance.exports.__wbindgen_realloc);
-                    const len1 = WASM_VECTOR_LEN;
-                    getDataViewMemory0().setInt32(arg0 + 4 * 1, len1, true);
-                    getDataViewMemory0().setInt32(arg0 + 4 * 0, ptr1, true);
+                      const ret = getObject(arg1).stack;
+                      const ptr1 = passStringToWasm0(ret, instance.exports.__wbindgen_malloc, instance.exports.__wbindgen_realloc);
+                      const len1 = WASM_VECTOR_LEN;
+                      getDataViewMemory0().setInt32(arg0 + 4 * 1, len1, true);
+                      getDataViewMemory0().setInt32(arg0 + 4 * 0, ptr1, true);
                   },
                   __wbindgen_object_drop_ref(arg0) {
-                      takeObject(arg0);
+                        takeObject(arg0);
                   },
                   __wbg_log_b103404cc5920657(arg0) {
-                      const newOutput = document.createElement("div");
-                      newOutput.textContent = `${getObject(arg0)}`;
-                      output.appendChild(newOutput);
-                      scrollToTheEnd();
+                        const newOutput = document.createElement("div");
+                        newOutput.textContent = `${getObject(arg0)}`;
+                        output.appendChild(newOutput);
+                        scrollToTheEnd();
                   },
                   __wbg_now_b7a162010a9e75b4() {
-                      return Date.now();
+                        return Date.now();
                   },
                   __wbindgen_throw(arg0, arg1) {
-                      throw new Error(getStringFromWasm0(arg0, arg1));
+                        throw new Error(getStringFromWasm0(arg0, arg1));
                   },
               }
           });
@@ -176,10 +177,10 @@
           let cachedDataViewMemory0 = null;
 
           function getDataViewMemory0() {
-            if (cachedDataViewMemory0 === null || cachedDataViewMemory0.buffer.detached === true || (cachedDataViewMemory0.buffer.detached === undefined && cachedDataViewMemory0.buffer !== instance.exports.memory.buffer)) {
-              cachedDataViewMemory0 = new DataView(instance.exports.memory.buffer);
-            }
-            return cachedDataViewMemory0;
+              if (cachedDataViewMemory0 === null || cachedDataViewMemory0.buffer.detached === true || (cachedDataViewMemory0.buffer.detached === undefined && cachedDataViewMemory0.buffer !== instance.exports.memory.buffer)) {
+                  cachedDataViewMemory0 = new DataView(instance.exports.memory.buffer);
+              }
+              return cachedDataViewMemory0;
           }
 
           function getStringFromWasm0(ptr, len) {
