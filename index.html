@@ -77,7 +77,15 @@
                   return;
               }
               if (e.altKey || e.metaKey || e.ctrlKey) return;
-              if (e.code === "ArrowUp") {
+              const { 0: atFirstLine, 1: atLastLine } = isMobile ? [true, true] : (() => {
+                const { selectionStart, selectionEnd } = input;
+                if (selectionEnd !== selectionEnd) return [false, false];
+                const firstLinebreakIndex = input.value.indexOf("\n");
+                const lastLinebreakIndex = input.value.indexOf("\n");
+                if (firstLinebreakIndex === -1) return [true, true];
+                return [firstLinebreakIndex >= selectionStart, lastLinebreakIndex < selectionStart];
+              })();
+              if (atFirstLine && e.code === "ArrowUp") {
                   e.preventDefault();
                   if (inputHistoryIndex >= 1) {
                       inputHistoryIndex--;
@@ -86,7 +94,7 @@
                   }
                   return;
               }
-              if (e.code === "ArrowDown") {
+              if (atLastLine && e.code === "ArrowDown") {
                   e.preventDefault();
                   if (inputHistory.length - 1 > inputHistoryIndex) {
                       inputHistoryIndex++;
