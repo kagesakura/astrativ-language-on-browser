@@ -81,7 +81,7 @@
                 const { selectionStart, selectionEnd } = input;
                 if (selectionEnd !== selectionEnd) return [false, false];
                 const firstLinebreakIndex = input.value.indexOf("\n");
-                const lastLinebreakIndex = input.value.indexOf("\n");
+                const lastLinebreakIndex = input.value.lastIndexOf("\n");
                 if (firstLinebreakIndex === -1) return [true, true];
                 return [firstLinebreakIndex >= selectionStart, lastLinebreakIndex < selectionStart];
               })();
